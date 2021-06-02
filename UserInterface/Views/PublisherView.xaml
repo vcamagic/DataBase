@@ -1,0 +1,49 @@
+﻿<UserControl x:Class="UserInterface.Views.PublisherView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserInterface.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0">Publisher Name:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding Name}"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0">Address:</Label>
+        <TextBox Grid.Row="2" Grid.Column="1"  Text="{Binding Address}"></TextBox>
+        <Button x:Name="AddButton" Width="100" Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0" Command="{Binding AddCommand}">Add</Button>
+        <Label Grid.Row="1" Grid.Column="2">Publisher Name:</Label>
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding SelectedName}"></TextBox>
+        <Label Grid.Row="2" Grid.Column="2">Address:</Label>
+        <TextBox Grid.Row="2" Grid.Column="3" Text="{Binding SelectedAddress}"></TextBox>
+        <Button x:Name="EditButton" Width="100" Grid.Row="4" Grid.Column="2" Grid.ColumnSpan="2" Command="{Binding EditCommand}" >Edit</Button>
+        <DataGrid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="5" AlternatingRowBackground="LightCyan" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Data}" SelectedItem="{Binding SelectedPublisher}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Name" Width="*" Binding="{Binding PublisherName}"/>
+                <DataGridTextColumn Header="Address" Width="*" Binding="{Binding Address}"/>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="DeleteButton" Command="{Binding Path=DataContext.DeleteCommand,RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}">>Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>

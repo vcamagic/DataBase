@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fe434cf9a0324dfdaf1bfda441d225bd" Name="Diagram1" ZoomLevel="71" >
+        <EntityTypeShape EntityType="Model.Writer" Width="1.5" PointX="11.875" PointY="1" />
+        <EntityTypeShape EntityType="Model.Publication" Width="1.5" PointX="4.625" PointY="1" />
+        <EntityTypeShape EntityType="Model.Field" Width="1.5" PointX="8.125" PointY="4.375" />
+        <EntityTypeShape EntityType="Model.WrittenPublication" Width="1.5" PointX="8" PointY="0.875" />
+        <AssociationConnector Association="Model.WriterWrites" />
+        <AssociationConnector Association="Model.Belongs" />
+        <AssociationConnector Association="Model.FieldField" />
+        <EntityTypeShape EntityType="Model.Book" Width="1.5" PointX="5.5" PointY="4" />
+        <InheritanceConnector EntityType="Model.Book" />
+        <EntityTypeShape EntityType="Model.Article" Width="1.5" PointX="2.25" PointY="4" />
+        <InheritanceConnector EntityType="Model.Article" />
+        <EntityTypeShape EntityType="Model.Publisher" Width="1.5" PointX="5.5" PointY="6.5" />
+        <AssociationConnector Association="Model.BookPublisher" />
+        <EntityTypeShape EntityType="Model.Magazine" Width="1.5" PointX="1.75" PointY="7.75" />
+        <AssociationConnector Association="Model.ArticleMagazine" />
+        <EntityTypeShape EntityType="Model.WriterUnderContract" Width="1.5" PointX="10.625" PointY="3.875" />
+        <InheritanceConnector EntityType="Model.WriterUnderContract" />
+        <EntityTypeShape EntityType="Model.WriterFreelancer" Width="1.5" PointX="13.25" PointY="4" />
+        <InheritanceConnector EntityType="Model.WriterFreelancer" />
+        <AssociationConnector Association="Model.WriterUnderContractMagazine" ManuallyRouted="false" >
+        </AssociationConnector>
+        <AssociationConnector Association="Model.PublicationWrittenPublication" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

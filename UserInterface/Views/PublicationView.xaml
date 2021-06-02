@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="UserInterface.Views.PublicationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserInterface.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="1" Grid.Column="0">Publication Name:</Label>
+        <TextBox Grid.Row="1" Grid.Column="1"  Text="{Binding PubName}"></TextBox>
+        <Label Grid.Row="2" Grid.Column="0">Publication Type:</Label>
+        <ComboBox SelectedIndex="0" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Types}" SelectedValue="0" SelectedItem="{Binding Type}"></ComboBox>
+        <Label  Visibility="{Binding ShowBook}" Grid.Row="3" Grid.Column="0">Publisher:</Label>
+        <ComboBox  Grid.Row="3" Grid.Column="1"  Visibility="{Binding ShowBook}" DisplayMemberPath="PublisherName" ItemsSource="{Binding Publishers}" SelectedItem="{Binding SelectedPublisher}"></ComboBox>
+        <Label  Visibility="{Binding ShowArticle}" Grid.Row="4" Grid.Column="0">Magazine:</Label>
+        <ComboBox  Grid.Row="4" Grid.Column="1"  Visibility="{Binding ShowArticle}" DisplayMemberPath="MagazineName" ItemsSource="{Binding Magazines}" SelectedItem="{Binding SelectedMagazine}"></ComboBox>
+        <Label Grid.Row="5" Grid.Column="0" Visibility="{Binding ShowBook}">Num. Of Copies</Label>
+        <TextBox Grid.Row="5" Grid.Column="1" Visibility="{Binding ShowBook}" Text="{Binding NumCopies}"></TextBox>
+        <Label Grid.Row="6" Grid.Column="0" Visibility="{Binding ShowArticle}">Num. Of Letters</Label>
+        <TextBox Grid.Row="6" Grid.Column="1" Visibility="{Binding ShowArticle}" Text="{Binding NumLetters}"></TextBox>
+        <Button x:Name="AddButton" Width="100" Grid.Row="7" Grid.ColumnSpan="2" Grid.Column="0" Command="{Binding AddCommand}">Add</Button>
+        
+        <Label Grid.Row="1" Grid.Column="2">Publication Name:</Label>
+        <TextBox Grid.Row="1" Grid.Column="3" Text="{Binding SelectedPubName}"></TextBox>
+        <Label  Visibility="{Binding ShowBookSelected}" Grid.Row="2" Grid.Column="2">Publisher:</Label>
+        <ComboBox  Grid.Row="2" Grid.Column="3"  Visibility="{Binding ShowBookSelected}" DisplayMemberPath="PublisherName" ItemsSource="{Binding Publishers}" SelectedItem="{Binding SelectedPublisherS}"></ComboBox>
+        <Label  Visibility="{Binding ShowArticleSelected}" Grid.Row="2" Grid.Column="2">Magazine:</Label>
+        <ComboBox  Grid.Row="2" Grid.Column="3"  Visibility="{Binding ShowArticleSelected}" DisplayMemberPath="MagazineName" ItemsSource="{Binding Magazines}" SelectedItem="{Binding SelectedMagazineS}"></ComboBox>
+        <Label Grid.Row="3" Grid.Column="2" Visibility="{Binding ShowBookSelected}">Num. Of Copies</Label>
+        <TextBox Grid.Row="3" Grid.Column="3" Visibility="{Binding ShowBookSelected}" Text="{Binding NumCopiesSelected}"></TextBox>
+        
+        <Label Grid.Row="4" Grid.Column="2" Visibility="{Binding ShowArticleSelected}">Num. Of Letters</Label>
+        <TextBox Grid.Row="4" Grid.Column="3" Visibility="{Binding ShowArticleSelected}" Text="{Binding NumLettersSelected}"></TextBox>
+        
+        <Button x:Name="EditButton" Width="100" Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="2" Command="{Binding EditCommand}" >Edit</Button>
+        <DataGrid Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8" AlternatingRowBackground="LightCyan" IsReadOnly="True" CanUserAddRows="False" CanUserDeleteRows="False" ItemsSource="{Binding Data}" SelectedItem="{Binding SelectedPublication}" AutoGenerateColumns="False" VerticalScrollBarVisibility="Auto">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Width="*" Binding="{Binding Id}"/>
+                <DataGridTextColumn Header="Publication Name" Width="*" Binding="{Binding PubName}"/>
+                <DataGridTextColumn Header="Publication Type" Width="*" Binding="{Binding PubType}"/>
+                <DataGridTemplateColumn Header="Delete">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button x:Name="DeleteButton" Command="{Binding Path=DataContext.DeleteCommand,RelativeSource= {RelativeSource FindAncestor,AncestorType={x:Type DataGrid}}}">>Delete</Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</UserControl>
